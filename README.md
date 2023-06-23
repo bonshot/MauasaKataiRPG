@@ -31,51 +31,13 @@ This bot purpose is to make people enjoy a RPG with a lot of possibilities
 
 * **[Enlace de Invitación]()**
 
-* **[Cómo Ejecutar](#cómo-ejecutar)**
-
 * **[Dependencias](requirements.txt)**
 
     - [python-dotenv](https://pypi.org/project/python-dotenv/)
 
-    - [rqeuests](https://pypi.org/project/requests/)
-
-* **[Licencia MIT](LICENSE)**
+    - [requests](https://pypi.org/project/requests/)
 
 * **[Cómo contribuir y Convenciones usadas](CONTRIBUTING.MD)**
-
-<hr style="height:3px; width:50%" />
-<br/>
-
-    - [discord.py](https://pypi.org/project/discord.py/) *(con soporte de voz)*
-
-    - [python-dotenv](https://pypi.org/project/python-dotenv/)
-
-    - [tinytag](https://pypi.org/project/tinytag/)
-
-    - [rqeuests](https://pypi.org/project/requests/)
-
-* **[Licencia MIT](LICENSE)**
-
-* **[Cómo contribuir y Convenciones usadas](CONTRIBUTING.MD)**
-
-<hr style="height:1px; width:35%" />
-
-## Cómo Ejecutar
-
-Primero hay que pararse dentro de la carpeta [`run`](run), o de la carpeta raíz, y ejecutar uno de los dos
-archivos presentes en [`run`](run), según el Sistema Operativo.
-
-### **Ejemplos:**
-```bat
-@REM para Windows
-cd run
-./run.bat
-```
-```sh
-# para Linux u otro entorno de shell
-cd run
-./run.sh
-```
 
 <hr style="height:3px; width:50%" />
 <br/>

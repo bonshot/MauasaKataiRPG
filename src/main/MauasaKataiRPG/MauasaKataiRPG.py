@@ -11,16 +11,16 @@ from discord import Intents, Message
 from discord.ext.commands import Bot
 from discord.utils import utcnow
 
-from ..files import buscar_archivos
-from ..auxiliars import get_prefijo
-from ..db.atajos import (actualizar_guild, existe_usuario_autorizado,
-                         get_botshot_id, get_cogs_path)
+from ..files import search_files
+from ..auxiliars import get_prefix
+from ..db.shortcuts import (update_guild, exists_authorised_user,
+                         get_mauasa_id, get_cogs_path)
 from ..logger import BotLogger
 
 if TYPE_CHECKING:
     from datetime import datetime, timedelta
 
-# Para que no tire error en Windows al cerrar el Bot.
+# For windows not to drop an error when we close the bot.
 
 try:
     from asyncio import \
@@ -28,11 +28,11 @@ try:
     if system() == "Windows":
         set_event_loop_policy(WindowsSelectorEventLoopPolicy())
 except ImportError:
-    BotLogger().warning("No se pudo importar 'WindowsSelectorEventLoopPolicy' al iniciar " +
-                        "el Bot, probablemente porque esto no es Windows.")
+    BotLogger().warning("Couldn't import 'WindowsSelectorEventLoopPolicy' initializing " +
+                        "the Bot, this is probably because this is not Windows.")
 
 
-PrefixCallable = Callable[["BotShot", Message], str]
+PrefixCallable = Callable[["MauasaKataiRPG", Message], str]
 
 
 # pylint: disable=abstract-method
@@ -117,4 +117,4 @@ class MauasaKataiRPG(Bot):
         """
 
         return (user_id == self.owner_id
-                or exists_authorized_user(user_id))
+                or exists_authorised_user(user_id))

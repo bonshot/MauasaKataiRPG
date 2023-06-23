@@ -1,6 +1,5 @@
 # -= MauasaKataiRPG =-
-
-<img alt="calamardo_guapo.png" align="left" src="media/img/references/handsome_squidward_rtx_circle.png" height=128 width=128 />
+<img alt="calamardo_guapo.png" align="left" src="https://lh3.googleusercontent.com/0jADcol_3otaKeDnnVsn_iU-HhArXc8DzS7wY9Sc97yH1BhuVtTqmbxbWP6diVwAsg=s180" height=128 width=128 />
 
 ![version](https://img.shields.io/badge/version-0.2.0-brightgreen)
 ![estrellas](https://img.shields.io/github/stars/bonshot/MauasaKataiRPG?label=Estrellas&style=social)

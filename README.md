@@ -36,6 +36,8 @@ This bot purpose is to make people enjoy a RPG with a lot of possibilities
     - [python-dotenv](https://pypi.org/project/python-dotenv/)
 
     - [requests](https://pypi.org/project/requests/)
+ 
+    - [discordpy](https://discordpy.readthedocs.io/en/stable/intro.html)
 
 * **[Cómo contribuir y Convenciones usadas](CONTRIBUTING.MD)**
 

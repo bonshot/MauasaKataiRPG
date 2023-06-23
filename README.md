@@ -1,5 +1,5 @@
 # -= MauasaKataiRPG =-
-<img alt="calamardo_guapo.png" align="left" src="https://lh3.googleusercontent.com/0jADcol_3otaKeDnnVsn_iU-HhArXc8DzS7wY9Sc97yH1BhuVtTqmbxbWP6diVwAsg=s180" height=128 width=128 />
+<img alt="calamardo_guapo.png" align="left" src="https://github.com/bonshot/MauasaKataiRPG/assets/78744163/f60a45e5-2b43-4bc6-ae8e-24177574d54a" height=128 width=128 />
 
 ![version](https://img.shields.io/badge/version-0.0.1-purple?style=plastic)
 ![estrellas](https://img.shields.io/github/stars/bonshot/MauasaKataiRPG?label=stars&style=plastic&color=purple)
@@ -7,7 +7,8 @@
 <!-- ![Tests](https://github.com/bonshot/MauasaKataiRPG/actions/workflows/tests.yml/badge.svg) tests -->
 <!-- ![Pylint](https://github.com/bonshot/MauasaKataiRPG/actions/workflows/pylint.yml/badge.svg) linter de py -->
 
-This bot purpose is to make people enjoy a RPG with a lot of possibilities
+This is an upcoming RPG Discord bot, with a lot of features, <br/>
+with player progression and variety of classes, razes, spells and abilities <br/>
 
 <br/>
 <br/>

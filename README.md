@@ -5,7 +5,6 @@
 ![estrellas](https://img.shields.io/github/stars/bonshot/MauasaKataiRPG?label=stars&style=plastic&color=purple)
 ![visitas](https://img.shields.io/github/watchers/bonshot/MauasaKataiRPG?label=visits&style=plastic&color=purple)
 <!-- ![Tests](https://github.com/bonshot/MauasaKataiRPG/actions/workflows/tests.yml/badge.svg) tests -->
-<!-- ![Pylint](https://github.com/bonshot/MauasaKataiRPG/actions/workflows/pylint.yml/badge.svg) linter de py -->
 
 This bot purpose is to make people enjoy a RPG with a lot of possibilities
 
@@ -31,13 +30,32 @@ This bot purpose is to make people enjoy a RPG with a lot of possibilities
 
 * **[Enlace de Invitación]()**
 
-* **[Dependencias](requirements.txt)**
+### Dependencias Generales
 
-    - [python-dotenv](https://pypi.org/project/python-dotenv/)
+- [Docker](https://www.docker.com/)
+- [Docker-compose](https://docs.docker.com/compose/)
 
-    - [requests](https://pypi.org/project/requests/)
- 
-    - [discordpy](https://discordpy.readthedocs.io/en/stable/intro.html)
+### API
+
+- [Flask](https://palletsprojects.com/p/flask/)
+- [SQLAlchemy](https://www.sqlalchemy.org/)
+- [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/)
+- [mysqlclient](https://pypi.org/project/mysqlclient/)
+- [mysql-connector-python](https://pypi.org/project/mysql-connector-python/)
+- [python-dotenv](https://pypi.org/project/python-dotenv/)
+- [requests](https://pypi.org/project/requests/)
+- [Flask-Cors](https://flask-cors.readthedocs.io/en/latest/)
+- [pip](https://pypi.org/project/pip/)
+
+### Bot
+
+- [dpp](https://dpp.dev/)
+- [libssl-dev](https://packages.debian.org/es/sid/libssl-dev)
+- [libcurl4-openssl-dev](https://packages.debian.org/sid/libcurl4-openssl-dev)
+
+### Base de Datos
+
+- [mysql8.0-debian](https://hub.docker.com/_/mysql)
 
 * **[Cómo contribuir y Convenciones usadas](CONTRIBUTING.MD)**
 

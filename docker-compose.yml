@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  mysql_db:
+      container_name: mauasakatairpg_db
+      build:
+        context: .
+        dockerfile: ./MauasaKataiRPG_DB/Dockerfile
+      restart: always
+      env_file:
+        - ./MauasaKataiRPG_DB/.env
+      volumes:
+        - ./MauasaKataiRPG_DB/Backup/:/MauasaKataiRPG_DB/Backup/
+        - ./MauasaKataiRPG_DB/Key/:/MauasaKataiRPG_DB/Key/
+      ports:
+        - "12001:3306"
+
+  mauasakatairpg_bot:
+    container_name: mauasakatairpg_bot
+    build:
+      context: .
+      dockerfile: ./MauasaKataiRPG_Bot/Dockerfile
+    restart: always
+    volumes:
+      - ./MauasaKataiRPG_Bot:/MauasaKataiRPG_Bot
+
+  mauasakatairpg_api:
+    container_name: mauasakatairpg_api
+    build:
+      context: .
+      dockerfile: ./MauasaKataiRPG_API/Dockerfile
+    restart: always
+    ports:
+      - "12000:5000"
+    volumes:
+      - ./MauasaKataiRPG_API:/MauasaKataiRPG_API

@@ -35,17 +35,18 @@ void process_curl(CURL* curl, const std::string& url, const std::string& data) {
     CURLcode res;
     struct curl_slist *headers = NULL;
     headers = curl_slist_append(headers, "Content-Type: application/json");
+    long http_code = 0;
 
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data.c_str());
     res = curl_easy_perform(curl);
-
-    if(res != CURLE_OK) {
-        fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
+    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &http_code);
+    curl_slist_free_all(headers);
+    if(http_code != 200) {
+        fprintf(stderr, "HTTP request failed with code %ld\n", http_code);
     }
 
-    curl_slist_free_all(headers);
 }
 
 void send_post_request(const std::string& url, const std::string& data) {
@@ -73,7 +74,6 @@ int main() {
     std::string envfile = ".env";
     std::unordered_map<std::string, std::string> env = load_env_file(envfile);
     std::string bot_token = env["BOT_TOKEN"];
-    std::cout << "Bot token: " << env["BOT_TOKEN"] << std::endl;
 
     dpp::cluster bot(bot_token);
     bot.on_log(dpp::utility::cout_logger());

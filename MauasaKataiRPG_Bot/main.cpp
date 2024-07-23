@@ -10,6 +10,22 @@
 #include <sstream>
 #include <unordered_map>
 
+#define IMG_URL "https://i.ibb.co/cFkKzbj/imagen-2024-07-19-042212883.png"
+
+std::string map_to_json(const std::map<std::string, std::string>& data) {
+    std::string json = "{";
+    bool first = true;
+    for (const auto& pair : data) {
+        if (!first) {
+            json += ",";
+        }
+        json += "\"" + pair.first + "\":\"" + pair.second + "\"";
+        first = false;
+    }
+    json += "}";
+    return json;
+}
+
 std::unordered_map<std::string, std::string> load_env_file(const std::string& fileName) {
     std::unordered_map<std::string, std::string> variables;
     std::ifstream file(fileName);
@@ -18,79 +34,122 @@ std::unordered_map<std::string, std::string> load_env_file(const std::string& fi
         return variables;
     }
 
-    std::string linea;
-    while (std::getline(file, linea)) {
-        std::istringstream iss(linea);
-        std::string clave, valor;
-        if (std::getline(iss, clave, '=') && std::getline(iss, valor)) {
-            variables[clave] = valor;
+    std::string line;
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        std::string key, value;
+        if (std::getline(iss, key, '=') && std::getline(iss, value)) {
+            variables[key] = value;
         }
     }
-
     file.close();
     return variables;
 }
 
-void process_curl(CURL* curl, const std::string& url, const std::string& data) {
-    CURLcode res;
-    struct curl_slist *headers = NULL;
-    headers = curl_slist_append(headers, "Content-Type: application/json");
-    long http_code = 0;
+const std::unordered_map<std::string, std::string> ENV = load_env_file(".env");
+const std::string register_url = "http://mauasakatairpg_api:5000/api/add_user";
 
-    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data.c_str());
-    res = curl_easy_perform(curl);
-    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &http_code);
-    curl_slist_free_all(headers);
-    if(http_code != 200) {
-        fprintf(stderr, "HTTP request failed with code %ld\n", http_code);
+void event_register(const dpp::slashcommand_t& event, dpp::cluster& bot) {
+    dpp::embed register_embed = dpp::embed()
+        .set_color(dpp::colors::light_blue)
+        .set_title("Register your account")
+        .set_thumbnail(IMG_URL);
+
+    dpp::message msg(event.command.channel_id, register_embed);
+
+    std::string class_select_id = "class_select_" + std::to_string(event.command.id);
+    std::string race_select_id = "race_select_" + std::to_string(event.command.id);
+    std::string confirm_button_id = "confirm_button_" + std::to_string(event.command.id);
+    std::string cancel_button_id = "cancel_button_" + std::to_string(event.command.id);
+
+    std::vector<std::pair<std::string, std::string>> classes = {
+        {"Warrior", "Warrior"},
+        {"Rogue", "Rogue"},
+        {"Mage", "Mage"},
+        {"Cleric", "Cleric"},
+        {"Paladin", "Paladin"},
+        {"Bard", "Bard"},
+        {"Priest", "Priest"},
+        {"Warlock", "Warlock"},
+        {"Ranger", "Ranger"}
+    };
+
+    std::vector<std::pair<std::string, std::string>> races = {
+        {"Human", "Human"},
+        {"Elf", "Elf"},
+        {"Dark Elf", "Dark Elf"},
+        {"Dwarf", "Dwarf"},
+        {"Orc", "Orc"},
+        {"Giant", "Giant"},
+        {"Goblin", "Goblin"},
+        {"Undead", "Undead"},
+        {"Gnome", "Gnome"}
+    };
+
+    dpp::component class_menu = dpp::component()
+        .set_type(dpp::cot_selectmenu)
+        .set_placeholder("Select your class")
+        .set_id(class_select_id);
+    
+    for (const auto& cls : classes) {
+        class_menu.add_select_option(dpp::select_option(cls.first, cls.second, "Desc"));
     }
 
-}
-
-void send_post_request(const std::string& url, const std::string& data) {
-    CURL* curl;
-    curl_global_init(CURL_GLOBAL_DEFAULT);
-    curl = curl_easy_init();
-    if(curl) {
-        process_curl(curl, url, data);
-        curl_easy_cleanup(curl);
+    dpp::component race_menu = dpp::component()
+        .set_type(dpp::cot_selectmenu)
+        .set_placeholder("Select your race")
+        .set_id(race_select_id);
+    
+    for (const auto& race : races) {
+        race_menu.add_select_option(dpp::select_option(race.first, race.second, "Desc"));
     }
-    curl_global_cleanup();
-}
 
-void event_register(const dpp::slashcommand_t& event) {
-    std::string url = "http://mauasakatairpg_api:5000/api/add_user";
-    std::string username = event.command.usr.username;
-    std::string password = event.command.usr.username;
-    std::string email = std::get<std::string>(event.get_parameter("email"));
-    std::string data = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\", \"email\": \"" + email + "\"}";
-    send_post_request(url, data);
-    event.reply("You have been registered!");
+    msg.add_component(
+        dpp::component().add_component(class_menu)
+    ).add_component(
+        dpp::component().add_component(race_menu)
+    ).add_component(
+        dpp::component().add_component(
+            dpp::component()
+                .set_type(dpp::cot_button)
+                .set_label("Confirm")
+                .set_style(dpp::cos_primary)
+                .set_id(confirm_button_id)
+        )
+    ).add_component(
+        dpp::component().add_component(
+            dpp::component()
+                .set_type(dpp::cot_button)
+                .set_label("Cancel")
+                .set_style(dpp::cos_danger)
+                .set_id(cancel_button_id)
+        )
+    );
+
+    event.reply(msg);
 }
 
 int main() {
-    std::string envfile = ".env";
-    std::unordered_map<std::string, std::string> env = load_env_file(envfile);
-    std::string bot_token = env["BOT_TOKEN"];
-
+    std::string bot_token = ENV.at("BOT_TOKEN");
     dpp::cluster bot(bot_token);
     bot.on_log(dpp::utility::cout_logger());
 
     bot.on_slashcommand([&bot](const dpp::slashcommand_t& event) {
         std::string command_name = event.command.get_command_name();
-        (command_name == "register") ? event_register(event) :
-        (command_name == "beep") ? event.reply("Boop!") :
-        event.reply("Command not found!");
+
+        if(command_name == "register"){
+            event_register(event, bot);
+        }
+
+        if(command_name == "beep"){
+            event.reply("Boop!");
+        }
     });
 
     bot.on_ready([&bot](const dpp::ready_t& event) {
         if (dpp::run_once<struct register_bot_commands>()) {
             bot.global_command_create(dpp::slashcommand("beep", "Beep Boop!", bot.me.id));
-            bot.global_command_create(dpp::slashcommand("register", "Register with the RPG system", bot.me.id)
-                .add_option(dpp::command_option(dpp::co_string, "email", "Your email address", true))
-            );
+            bot.global_command_create(dpp::slashcommand("register", "Register with the RPG system", bot.me.id));
         }
     });
 

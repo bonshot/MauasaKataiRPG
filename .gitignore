@@ -5,3 +5,6 @@ MauasaKataiRPG_DB/.env
 MauasaKataiRPG_DB/Key/*
 MauasaKataiRPG_DB/Key/
 MauasaKataiRPG_Bot/.env
+MauasaKataiRPG_API/.env
+MauasaKataiRPG_Bot/build/*
+MauasaKataiRPG_Bot/build/MauasaKataiRPG

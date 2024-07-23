@@ -1,6 +1,8 @@
 version: '3.8'
 
 services:
+
+
   mysql_db:
       container_name: mauasakatairpg_db
       build:
@@ -15,6 +17,8 @@ services:
       ports:
         - "12001:3306"
 
+
+
   mauasakatairpg_bot:
     container_name: mauasakatairpg_bot
     build:
@@ -23,6 +27,7 @@ services:
     restart: always
     volumes:
       - ./MauasaKataiRPG_Bot:/MauasaKataiRPG_Bot
+
 
   mauasakatairpg_api:
     container_name: mauasakatairpg_api

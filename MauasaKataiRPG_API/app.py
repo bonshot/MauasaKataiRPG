@@ -2,15 +2,17 @@ from flask import Flask, jsonify, request
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import create_engine, text
 from werkzeug.security import generate_password_hash
+import os, requests
+from dotenv import load_dotenv
 
 app = Flask(__name__)
-from sqlalchemy import create_engine
 
-DB_USER = 'root'
-DB_PASSWORD = '1'
-DB_HOST = 'mauasakatairpg_db'
-DB_PORT = '3306'
-DB_NAME = 'MauasaKataiRPG_DB'
+load_dotenv()
+DB_USER = os.getenv('DB_USER')
+DB_PASSWORD = os.getenv('DB_PASSWORD')
+DB_HOST = os.getenv('DB_HOST')
+DB_PORT = os.getenv('DB_PORT')
+DB_NAME = os.getenv('DB_NAME')
 
 db_url = f"mysql+mysqlconnector://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 engine = create_engine(db_url)
@@ -36,7 +38,7 @@ def index():
 
 @app.route('/api/users')
 def users():
-    query = 'SELECT * FROM users'
+    query = 'SELECT * FROM player'
     return get_data(query)
 
 @app.route('/api/add_user', methods=['POST'])
@@ -47,21 +49,107 @@ def add_user():
         password = generate_password_hash(data['password'])
         email = data['email']
 
-        with engine.connect() as connection:
+        with engine.begin() as connection:  # Use begin() for transaction
             query = '''
                 INSERT INTO users (username, password, email, created_at) VALUES (:username, :password, :email, NOW())
             '''
             connection.execute(text(query), {'username': username, 'password': password, 'email': email})
-            connection.commit()
-            full_query = query.replace(':username', f"'{username}'").replace(':password', f"'{password}'").replace(':email', f"'{email}'")
-            print(full_query)
+
         return jsonify({'message': 'User added successfully'})
 
     except SQLAlchemyError as e:
-        print(e)
-        return jsonify({'error': 'Failed to add user'}), 500
+        return jsonify({'error': 'Failed to add user', 'data': data}), 500
 
+@app.route('/api/classes/<string:data>', methods=['GET'])
+def get_classes(data):
+    query = f'SELECT * FROM classes WHERE name = "{data}"'
+    return get_data(query)
 
+@app.route('/api/races/<string:data>', methods=['GET'])
+def get_races(data):
+    query = f'SELECT * FROM race WHERE name = "{data}"'
+    return get_data(query)
+
+def process_attributes(user_race, user_class):
+    url_class = f'http://127.0.0.1:5000/api/classes/{user_class}'
+    url_race = f'http://127.0.0.1:5000/api/races/{user_race}'
+    class_data = requests.get(url_class).json()
+    race_data = requests.get(url_race).json()
+
+    attributes = {
+        'vigor': class_data['extra_vigor'],
+        'strength': class_data['extra_strength'],
+        'dexterity': class_data['extra_dexterity'],
+        'concentration': class_data['extra_concentration'],
+        'intelligence': class_data['extra_intelligence'],
+        'faith': class_data['extra_faith'],
+        'luck': class_data['extra_luck'],
+
+        'extra_health': race_data['extra_health'],
+        'extra_mana': race_data['extra_mana'],
+        'extra_conviction': race_data['extra_conviction'],
+        'extra_stamina': race_data['extra_stamina'],
+        'extra_armor': race_data['extra_armor'],
+        'extra_magic_resistance': race_data['extra_magic_resistance']
+    }
+
+    print(attributes)
+
+    return attributes
+
+def insert_data(user_data, attributes):
+    try:
+        with engine.begin() as connection:  # Use begin() for transaction
+            query = '''
+                INSERT INTO player (user_id, user_name, level, experience, vigor, strength, dexterity, intelligence, faith, luck, base_health, base_mana, base_conviction, base_armor, base_magic_resistance, location, class)
+                VALUES(:user_id, :user_name, :level, :experience, :vigor, :strength, :dexterity, :intelligence, :faith, :luck, :extra_health, :extra_mana, :extra_conviction, :extra_armor, :extra_magic_resistance, :location, :class)'''
+
+            connection.execute(text(query), {
+                'user_id': user_data['user_id'],
+                'user_name': user_data['user_name'],
+                'level': user_data['level'],
+                'experience': user_data['experience'],
+                'vigor': attributes['vigor'],
+                'strength': attributes['strength'],
+                'dexterity': attributes['dexterity'],
+                'intelligence': attributes['intelligence'],
+                'faith': attributes['faith'],
+                'luck': attributes['luck'],
+                'extra_health': attributes['extra_health'],
+                'extra_mana': attributes['extra_mana'],
+                'extra_conviction': attributes['extra_conviction'],
+                'extra_armor': attributes['extra_armor'],
+                'extra_magic_resistance': attributes['extra_magic_resistance'],
+                'location': user_data['location'],
+                'class': user_data['class']
+            })
+            
+        return jsonify({'message': 'User registered successfully'})
+    except SQLAlchemyError as e:
+        return jsonify({'error': str(e.__dict__['orig'])}), 500
+
+@app.route('/api/register', methods=['POST'])
+def register():
+    try:
+        data = request.get_json()
+        user_id = data['user_id']
+        user_name = data['user_name']
+        user_race = data['race']
+        user_class = data['class']
+        attributes = process_attributes(user_race, user_class)
+        user_data = {
+            'user_id': user_id,
+            'user_name': user_name,
+            'level': 1,
+            'experience': 0,
+            'location': 1,
+            'race': user_race,
+            'class': user_class
+        }
+        return insert_data(user_data, attributes)
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

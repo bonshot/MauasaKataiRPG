@@ -29,6 +29,9 @@ services:
       - ./MauasaKataiRPG_Bot:/MauasaKataiRPG_Bot
 
 
+
+
+
   mauasakatairpg_api:
     container_name: mauasakatairpg_api
     build:

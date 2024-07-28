@@ -32,9 +32,10 @@ def get_data(query):
     except SQLAlchemyError as e:
         return jsonify({'error': str(e.__dict__['orig'])})
 
-@app.route('/')
-def index():
-    return 'Hello, World!'
+def get_extrapolated_data(query, field):
+    print(query)
+    print(field)
+
 
 @app.route('/api/users')
 def users():
@@ -65,9 +66,15 @@ def get_classes(data):
     query = f'SELECT * FROM classes WHERE name = "{data}"'
     return get_data(query)
 
+@app.route('/api/races', methods=['GET'])
+def get_races():
+    query = f'SELECT * FROM races'
+    data = get_data(query)
+    return data
+
 @app.route('/api/races/<string:data>', methods=['GET'])
-def get_races(data):
-    query = f'SELECT * FROM race WHERE name = "{data}"'
+def get_race(data):
+    query = f'SELECT * FROM races WHERE name = "{data}"'
     return get_data(query)
 
 def process_attributes(user_race, user_class):
@@ -75,7 +82,6 @@ def process_attributes(user_race, user_class):
     url_race = f'http://127.0.0.1:5000/api/races/{user_race}'
     class_data = requests.get(url_class).json()
     race_data = requests.get(url_race).json()
-
     attributes = {
         'vigor': class_data['extra_vigor'],
         'strength': class_data['extra_strength'],
@@ -99,7 +105,7 @@ def process_attributes(user_race, user_class):
 
 def insert_data(user_data, attributes):
     try:
-        with engine.begin() as connection:  # Use begin() for transaction
+        with engine.begin() as connection:
             query = '''
                 INSERT INTO player (user_id, user_name, level, experience, vigor, strength, dexterity, intelligence, faith, luck, base_health, base_mana, base_conviction, base_armor, base_magic_resistance, location, class)
                 VALUES(:user_id, :user_name, :level, :experience, :vigor, :strength, :dexterity, :intelligence, :faith, :luck, :extra_health, :extra_mana, :extra_conviction, :extra_armor, :extra_magic_resistance, :location, :class)'''
@@ -150,6 +156,10 @@ def register():
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@app.route('/')
+def index():
+    return 'Hello, World!'
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

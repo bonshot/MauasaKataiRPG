@@ -1,0 +1,59 @@
+{
+    "equiped": {
+        "helmet": 1,
+        "chestplate": 1,
+        "gauntlet": 1,
+        "pants": 1,
+        "boots": 1,
+        "left_hand": 1,
+        "right_hand": 1,
+        "is_two_handed": true,
+        "left_ring": 1,
+        "right_ring": 1,
+        "necklace": 1,
+        "belt": 1,
+        "left_bracelet": 1,
+        "right_bracelet": 1
+    },
+
+    "inventory": {
+        "1": {
+            "quantity": 1,
+            "enhances" : {
+                "level": 1,
+                "extra_damage": 100
+            }
+        },
+        "2": {
+            "quantity": 12,
+            "enhances" : {
+                "level": 0,
+                "extra_damage": 0
+            }
+        }
+    },
+
+    "gold": 1000,
+
+    "health": {
+        "current": 100,
+        "max": 100
+    },
+    "mana": {
+        "current": 100,
+        "max": 100
+    },
+    "faith":{
+        "current": 100,
+        "max": 100
+    },
+    "stamina": {
+        "current": 100,
+        "max": 100
+    },
+    
+    "experience": {
+        "current": 0,
+        "max": 100
+    }
+}

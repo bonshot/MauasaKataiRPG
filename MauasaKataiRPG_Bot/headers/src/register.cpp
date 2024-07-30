@@ -1,7 +1,9 @@
 #include <dpp/dpp.h>
 #include <unordered_map>
+#include <future>
 
 #include "../register.h"
+#include "../utils.h"
 
 #define IMG_URL "https://i.ibb.co/cFkKzbj/imagen-2024-07-19-042212883.png"
 
@@ -55,6 +57,7 @@ void bot_on_event_register(const dpp::slashcommand_t& event, dpp::cluster& bot) 
                 .set_id(commands["cancel_button"])
         )
     );
-
+    std::string json = http_get_request(RACES_URL);
+    std::cout << json << std::endl;
     event.reply(msg);
 }

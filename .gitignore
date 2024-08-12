@@ -8,3 +8,4 @@ MauasaKataiRPG_Bot/.env
 MauasaKataiRPG_API/.env
 MauasaKataiRPG_Bot/build/*
 MauasaKataiRPG_Bot/build/MauasaKataiRPG
+MauasaKataiRPG_Bot/core

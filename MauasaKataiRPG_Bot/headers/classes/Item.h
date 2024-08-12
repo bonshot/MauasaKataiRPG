@@ -13,43 +13,41 @@ class Item{
     public:
         Item();
         
-        Item(std::string name, std::string type, std::string rarity, int price, std::string description, int max_stack);
+        Item(std::string name, std::string type, std::string rarity, int price, std::string description);
 
         virtual ~Item();
 
-        std::string get_name() const;
-        std::string get_type() const;
-        std::string get_rarity() const;
-        int get_price() const;
-        std::string get_description() const;  
+        std::string get_name();
+        std::string get_type();
+        std::string get_rarity();
+        int get_price();
+        std::string get_description();  
 };
 
 
 
 /**
- *  @brief Default constructor for Item
+ *  @brief Default ructor for Item
  *  @return Item
 **/
-Item::Item()
+inline Item::Item()
     : name(""),
       type(""),
       rarity(""),
       price(0),
-      description(""),
-      max_stack(0)
+      description("")
     {}
 
 /** 
- *  @brief Constructor for Item
+ *  @brief ructor for Item
  *  @param name Name of the item -> string
  *  @param type Type of the item -> string
  *  @param rarity Rarity of the item -> string
  *  @param price Price of the item -> int
  *  @param description Description of the item -> string
- *  @param max_stack Maximum stack of the item -> int
- *  @return Item -> 
+ *  @return Item
 **/
-Item::Item(std::string name, std::string type, std::string rarity, int price, std::string description, int max_stack)
+inline Item::Item(std::string name, std::string type, std::string rarity, int price, std::string description)
     : name(name),
       type(type),
       rarity(rarity),
@@ -62,7 +60,7 @@ Item::Item(std::string name, std::string type, std::string rarity, int price, st
  * @brief Function that gets the name of the item
  * @return string
 **/
-std::string get_name() const{
+inline std::string Item::get_name() {
     return this->name;
 }
 
@@ -70,7 +68,7 @@ std::string get_name() const{
  * @brief Function that gets the type of the item as is throwable, weapon, consumable, armor, etc.
  * @return string
 **/
-std::string get_type() const{
+inline std::string Item::get_type() {
     return this->type;
 }
 
@@ -78,7 +76,7 @@ std::string get_type() const{
  * @brief Function that gets the rarity of the item as is common, uncommon, rare, epic, etc.
  * @return string
 **/
-std::string get_rarity() const{
+inline std::string Item::get_rarity() {
     return this->rarity;
 }
 
@@ -86,7 +84,7 @@ std::string get_rarity() const{
  * @brief Function that gets the base price of the item
  * @return int
 **/
-int get_price() const{
+inline int Item::get_price() {
     return this->price;
 }
 
@@ -94,7 +92,7 @@ int get_price() const{
  * @brief Function that gets the description of the item
  * @return string
 **/
-std::string get_description() const{
+inline std::string Item::get_description() {
     return this->description;
 }
 

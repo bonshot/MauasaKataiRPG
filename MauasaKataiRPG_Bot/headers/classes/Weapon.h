@@ -1,46 +1,47 @@
 #include "Item.h"
 #include "Scales.h"
+#include "Effects.h"
+#include "Level.h"
+#include <iostream>
+#include <array>
+
+#define MAX_LEVEL 100
 
 #ifndef __WEPAON_H__
 #define __WEAPON_H__
 
 class Weapon : public Item{
     private:
-        int min_damage;
-        int max_damage;
-        int player_level_required;
-        Scales scales;
-        double critical_chance;
-        double critical_damage;
+        std::array<int, 2> damage;
+        std::array<double, 2> critical;
         std::string damage_type;
-        double venom_chance;        // Effects class
-        int venom_duration;
-        double freeze_chance;
-        int freeze_duration;
-        double paralysis_chance;
-        int paralysis_duration;
-        int effect_damage_min;
-        int effect_damage_max;
-        double effect_chance;
-        int level;      // Leveling class with items needed
-        int max_level;
+        Scales scales;
+        Effects effects;
+        Level level;
+        int player_level_required;
 
     public:
         Weapon();
-        Weapon(std::string name, std::string type, std::string rarity, int price, std::string description, int max_stack, int min_damage, int max_damage, int attack_speed, int critical_chance, int critical_damage, int durability);
+        Weapon(std::array<int, 2> damage, std::array<double, 2> critical, std::string damage_type, Scales scales, Effects effects, Level level, int player_level_required);
 
         virtual ~Weapon();
         virtual void equip();
         virtual void unequip();
-
         void level_up();
-
-        int get_min_damage() const;
-        int get_max_damage() const;
-        int get_attack_speed() const;
-        int get_critical_chance() const;
-        int get_critical_damage() const;
-        int get_durability() const;
+        std::array<int, 2> get_damage();
+        std::array<double, 2> get_critical();
 };
+
+inline void Weapon::level_up(){
+    this->level.level_up();
+}
+
+inline std::array<int, 2> Weapon::get_damage(){
+    return {this->damage[0], this->damage[1]};
+}
+
+inline std::array<double, 2> Weapon::get_critical(){
+    return {this->critical[0], this->critical[1]};
+}
 
 #endif

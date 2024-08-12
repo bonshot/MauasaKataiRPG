@@ -19,9 +19,10 @@ class Entity{
     
     public:
         Entity(std::string name);
-}
 
-Entity::Entity(std::string name){
+};
+
+inline Entity::Entity(std::string name){
     this->name = name;
     this->level = 1;
     this->health = 100;

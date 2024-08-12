@@ -1,3 +1,7 @@
+#include <array>
+
+#define SCALE_AMOUNT 7
+
 #ifndef __SCALES_H__
 #define __SCALES_H__
 
@@ -14,123 +18,53 @@ class Scales{
     public:
 
         /**
-         * @brief Construct a new Scales::Scales object with all values set to 0
-         * @return Scales
-        **/
-        Scales();
-
-        /**
          * @brief Construct a new Scales::Scales object with all values set to the requested
-         * @param scale_str  The strength factor     -> double
-         * @param scale_dex  The dexterity factor    -> double
-         * @param scale_int  The intelligence factor -> double
-         * @param scale_fth  The faith factor        -> double
-         * @param scale_arm  The armor factor        -> double
-         * @param scale_hp   The health factor       -> double
-         * @param scale_luck The luck factor         -> double
+         * @param scale_str  The strength factor     -> array[0]
+         * @param scale_dex  The dexterity factor    -> array[1]
+         * @param scale_int  The intelligence factor -> array[2]
+         * @param scale_fth  The faith factor        -> array[3]
+         * @param scale_arm  The armor factor        -> array[4]
+         * @param scale_hp   The health factor       -> array[5]
+         * @param scale_luck The luck factor         -> array[6]
          * @return Scales
         **/
-        Scales(double scale_str, double scale_dex, double scale_int, double scale_fth, double scale_arm, double scale_hp, double scale_luck);
+        Scales(std::array<double, SCALE_AMOUNT> scales);
         
         /**
-         *  @brief Get the Scales object
-         *  @return Scales
+         *  @brief Get an array of all the scales
+         *  @return Array of doubles:
+         *  @ [0] -> scale_str
+         *  @ [1] -> scale_dex
+         *  @ [2] -> scale_int
+         *  @ [3] -> scale_fth
+         *  @ [4] -> scale_arm
+         *  @ [5] -> scale_hp
+         *  @ [6] -> scale_luck
         **/
-        Scales get_scales();
-
-        /**
-         *  @brief Get the strength scale factor
-         *  @return double
-        **/
-        double get_scale_str() const;
-
-        /**
-         *  @brief Get the dexterity scale factor
-         *  @return double
-        **/
-        double get_scale_dex() const;
-
-        /**
-         *  @brief Get the intelligence scale factor
-         *  @return double
-        **/
-        double get_scale_int() const;
-
-        /**
-         *  @brief Get the faith scale factor
-         *  @return double
-        **/
-        double get_scale_fth() const;
-
-        /**
-         *  @brief Get the armor scale factor
-         *  @return double
-        **/
-        double get_scale_arm() const;
-
-        /**
-         *  @brief Get the health points scale factor
-         *  @return double
-        **/
-        double get_scale_hp() const;
-
-        /**
-         *  @brief Get the luck scale factor
-         *  @return double
-        **/
-        double get_scale_luck() const;
+        std::array<double, SCALE_AMOUNT> get_scales();
 };
 
-Scales::Scales()
-    : scale_str(0),
-      scale_dex(0),
-      scale_int(0),
-      scale_fth(0),
-      scale_arm(0),
-      scale_hp(0),
-      scale_luck(0)
+inline Scales::Scales(std::array<double, SCALE_AMOUNT> scales) : 
+      scale_str (scales[0]), 
+      scale_dex (scales[1]), 
+      scale_int (scales[2]), 
+      scale_fth (scales[3]), 
+      scale_arm (scales[4]), 
+      scale_hp  (scales[5]), 
+      scale_luck(scales[6])
     {}
 
-Scales::Scales(double scale_str, double scale_dex, double scale_int, double scale_fth, double scale_arm, double scale_hp, double scale_luck)
-    : scale_str(scale_str),
-      scale_dex(scale_dex),
-      scale_int(scale_int),
-      scale_fth(scale_fth),
-      scale_arm(scale_arm),
-      scale_hp(scale_hp),
-      scale_luck(scale_luck)
-    {}
-
-Scales::get_scales(){
-    return *this;
+inline std::array<double, SCALE_AMOUNT> Scales::get_scales(){
+    return {
+        this->scale_str, 
+        this->scale_dex, 
+        this->scale_int, 
+        this->scale_fth, 
+        this->scale_arm, 
+        this->scale_hp, 
+        this->scale_luck
+    };
 }
 
-double Scales::get_scale_str() const{
-    return this->scale_str;
-}
-
-double Scales::get_scale_dex() const{
-    return this->scale_dex;
-}
-
-double Scales::get_scale_int() const{
-    return this->scale_int;
-}
-
-double Scales::get_scale_fth() const{
-    return this->scale_fth;
-}
-
-double Scales::get_scale_arm() const{
-    return this->scale_arm;
-}
-
-double Scales::get_scale_hp() const{
-    return this->scale_hp;
-}
-
-double Scales::get_scale_luck() const{
-    return this->scale_luck;
-}
 
 #endif

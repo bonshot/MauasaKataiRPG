@@ -32,13 +32,13 @@ template <class T> class Node{
          *  @brief  A function that gives the next node
          *  @return A pointer to the next node -> Node<T>*
         **/
-        Node<T>* next();
+        Node<T>* get_next();
 
         /**
          *  @brief  A function that gives the previous node
          *  @return A pointer to the previous node -> Node<T>*
         **/
-        Node<T>* prev();
+        Node<T>* get_prev();
 
         /**
          *  @brief  Assigns the next node
@@ -55,8 +55,8 @@ template <class T> class Node{
 
 template <class T> Node<T>::Node(T data){
     this->data = data;
-    this->next = NULL;
-    this->prev = NULL;
+    this->next = nullptr;
+    this->prev = nullptr;
 }
 
 template <class T> T Node<T>::get_node_data(){
@@ -67,11 +67,11 @@ template <class T> void Node<T>::set_node_data(T data){
     this->data = data;
 }
 
-template <class T> Node<T>* Node<T>::next(){
+template <class T> Node<T>* Node<T>::get_next(){
     return this->next;
 }
 
-template <class T> Node<T>* Node<T>::prev(){
+template <class T> Node<T>* Node<T>::get_prev(){
     return this->prev;
 }
 

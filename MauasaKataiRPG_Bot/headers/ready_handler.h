@@ -1,3 +1,5 @@
+#include <dpp/dpp.h>
+
 /**
 * This function handles all the slash command events for better organization
 * @param bot: The bot that is being used -> dpp::cluster&

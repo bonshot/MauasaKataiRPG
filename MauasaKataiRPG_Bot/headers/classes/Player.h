@@ -17,6 +17,12 @@ class Player : public Entity{
         int luck;
     
     public:
+    
+        /**
+         * @brief Base constructor of the Player class
+         * @param name: name of the player -> std::string
+         * @return Player
+        **/
         Player(std::string name);
 };
 

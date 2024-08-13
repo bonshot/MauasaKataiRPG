@@ -1,3 +1,5 @@
+#include <dpp/dpp.h>
+
 #ifndef __EVENT_HANDLER_H__
 #define __EVENT_HANDLER_H__
 

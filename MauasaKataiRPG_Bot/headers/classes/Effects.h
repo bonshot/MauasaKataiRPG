@@ -16,10 +16,57 @@ class Effects{
         double effect_chance;
 
     public:
+
+        /**
+         * @brief Default constructor for Effects class
+        **/
         Effects();
+
+        /**
+         * @brief Constructor for Effects class
+         * @param effects -> array<double, 9> containing the effects values
+         * effects[0] -> venom_chance
+         * effects[1] -> venom_duration
+         * effects[2] -> freeze_chance
+         * effects[3] -> freeze_duration
+         * effects[4] -> paralysis_chance
+         * effects[5] -> paralysis_duration
+         * effects[6] -> effect_damage_min
+         * effects[7] -> effect_damage_max
+         * effects[8] -> effect_chance
+         * @return Effects
+        **/
         Effects(std::array<double, 9> effects);
 
+        /**
+         * @brief Function that gets the effects values
+         * @return array<double, 9>
+         * effects[0] -> venom_chance
+         * effects[1] -> venom_duration
+         * effects[2] -> freeze_chance
+         * effects[3] -> freeze_duration
+         * effects[4] -> paralysis_chance
+         * effects[5] -> paralysis_duration
+         * effects[6] -> effect_damage_min
+         * effects[7] -> effect_damage_max
+         * effects[8] -> effect_chance
+        **/
         std::array<double, 9> get_effects();
+
+        /**
+         * @brief Set the effects object
+         * 
+         * @param effects -> array<double, 9> containing the effects values
+         * effects[0] -> venom_chance
+         * effects[1] -> venom_duration
+         * effects[2] -> freeze_chance
+         * effects[3] -> freeze_duration
+         * effects[4] -> paralysis_chance
+         * effects[5] -> paralysis_duration
+         * effects[6] -> effect_damage_min
+         * effects[7] -> effect_damage_max
+         * effects[8] -> effect_chance
+        **/
         void set_effects(std::array<double, 9> effects);
 };
 

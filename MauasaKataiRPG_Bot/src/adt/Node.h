@@ -14,7 +14,11 @@ template <class T> class Node{
          *  @param  data the data to be assigned to the node -> T
          *  @return the node itself -> Node<T> object
         **/
-        Node(T data);
+        Node(T data):
+            data(data),
+            next(nullptr),
+            prev(nullptr)
+        {}
 
         /**
          *  @brief  A function that gives the data of the node
@@ -53,34 +57,5 @@ template <class T> class Node{
         void set_prev(Node<T>* prev);
 };
 
-template <class T> Node<T>::Node(T data){
-    this->data = data;
-    this->next = nullptr;
-    this->prev = nullptr;
-}
-
-template <class T> T Node<T>::get_node_data(){
-    return this->data;
-}
-
-template <class T> void Node<T>::set_node_data(T data){
-    this->data = data;
-}
-
-template <class T> Node<T>* Node<T>::get_next(){
-    return this->next;
-}
-
-template <class T> Node<T>* Node<T>::get_prev(){
-    return this->prev;
-}
-
-template <class T> void Node<T>::set_next(Node<T>* next) {
-    this->next = next;
-}
-
-template <class T> void Node<T>::set_prev(Node<T>* prev) {
-    this->prev = prev;
-}
 
 #endif

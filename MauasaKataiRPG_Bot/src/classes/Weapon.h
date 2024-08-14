@@ -39,7 +39,15 @@ class Weapon : public Item{
          * @param player_level_required: integer with the level required to use the weapon -> int
          * @return Weapon
         **/
-        Weapon(std::array<int, 2> damage, std::array<double, 2> critical, std::string damage_type, Scales scales, Effects effects, Level level, int player_level_required);
+        Weapon(std::array<int, 2> damage, std::array<double, 2> critical, std::string damage_type, Scales scales, Effects effects, Level level, int player_level_required):
+            damage(damage),
+            critical(critical),
+            damage_type(damage_type),
+            scales(scales),
+            effects(effects),
+            level(level),
+            player_level_required(player_level_required)
+        {}
 
         /**
          * @brief Destructor of the Weapon class, it will be declared on either one handed, or two handed
@@ -74,16 +82,5 @@ class Weapon : public Item{
         std::array<double, 2> get_critical();
 };
 
-inline void Weapon::level_up(){
-    this->level.level_up();
-}
-
-inline std::array<int, 2> Weapon::get_damage(){
-    return {this->damage[0], this->damage[1]};
-}
-
-inline std::array<double, 2> Weapon::get_critical(){
-    return {this->critical[0], this->critical[1]};
-}
 
 #endif

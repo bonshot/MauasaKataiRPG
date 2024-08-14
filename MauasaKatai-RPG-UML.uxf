@@ -1,4 +1,4 @@
-<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>576</x><y>352</y><w>168</w><h>168</h></coordinates><panel_attributes>Entity
+<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>702</x><y>396</y><w>189</w><h>189</h></coordinates><panel_attributes>Entity
 --
 +name: string
 +l_hand: weapon
@@ -11,38 +11,38 @@
 +armor: int
 +magic_resistance: int
 --
-Entity(name: string, hp: int, mp: int)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>376</x><y>200</y><w>168</w><h>48</h></coordinates><panel_attributes>One_handed
+Entity(name: string, hp: int, mp: int)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>477</x><y>225</y><w>189</w><h>54</h></coordinates><panel_attributes>One_handed
 --
 +equip_left()
-+equip_right()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>376</x><y>272</y><w>168</w><h>40</h></coordinates><panel_attributes>Two_handed
++equip_right()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>477</x><y>306</y><w>189</w><h>45</h></coordinates><panel_attributes>Two_handed
 --
-+equip_two_handed()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>248</x><y>664</y><w>168</w><h>64</h></coordinates><panel_attributes>Player
++equip_two_handed()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>333</x><y>747</y><w>189</w><h>72</h></coordinates><panel_attributes>Player
 --
 +user_id: int
 +location_id: int
 --
-Player(user_id: int)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>536</x><y>664</y><w>248</w><h>80</h></coordinates><panel_attributes>Items
+Player(user_id: int)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>657</x><y>747</y><w>279</w><h>90</h></coordinates><panel_attributes>Items
 --
 +item_list: dict &lt;string: name, int: quantity&gt;
 --
 Items(DICT, &lt;name:string, quantity:int&gt;)
 +change_quantity(key:string, quantity_variation: int)
-+add_new_item(name: string, quantity: item)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>560</x><y>784</y><w>152</w><h>88</h></coordinates><panel_attributes>Map
++add_new_item(name: string, quantity: item)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>684</x><y>882</y><w>171</w><h>99</h></coordinates><panel_attributes>Map
 --
 +id: int
 +biome: string
 +adyacent_maps: Map[ ]
 +denied_actions: string[ ]
 --
-Map(biome: string, id: int)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>792</x><y>784</y><w>104</w><h>40</h></coordinates><panel_attributes>World_Boss
+Map(biome: string, id: int)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>945</x><y>882</y><w>117</w><h>45</h></coordinates><panel_attributes>World_Boss
 --
-+location_id: int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1040</x><y>784</y><w>104</w><h>40</h></coordinates><panel_attributes>Creep
---</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>920</x><y>784</y><w>104</w><h>40</h></coordinates><panel_attributes>Event_Creep
---</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>576</x><y>904</y><w>104</w><h>40</h></coordinates><panel_attributes>World_Map
++location_id: int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1224</x><y>882</y><w>117</w><h>45</h></coordinates><panel_attributes>Creep
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1089</x><y>882</y><w>117</w><h>45</h></coordinates><panel_attributes>Event_Creep
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>702</x><y>1017</y><w>117</w><h>45</h></coordinates><panel_attributes>World_Map
 --
-+Maps: dict&lt;id, map&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>912</x><y>352</y><w>128</w><h>40</h></coordinates><panel_attributes>Spells_and_abilities
++Maps: dict&lt;id, map&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1080</x><y>396</y><w>144</w><h>45</h></coordinates><panel_attributes>Spells_and_abilities
 --
-+spell_dict: dict&lt;int: id&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>896</x><y>448</y><w>160</w><h>160</h></coordinates><panel_attributes>Spells_and_ability
++spell_dict: dict&lt;int: id&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1062</x><y>504</y><w>180</w><h>180</h></coordinates><panel_attributes>Spells_and_ability
 --
 +key_name: string
 +mp_consumption: int
@@ -54,7 +54,7 @@ Map(biome: string, id: int)</panel_attributes><additional_attributes></additiona
 +luck_factor: double
 +armor_factor: double
 +magic_resistance_factor: double
-+cooldown: int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>72</x><y>0</y><w>136</w><h>312</h></coordinates><panel_attributes>Weapon
++cooldown: int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>135</x><y>0</y><w>153</w><h>351</h></coordinates><panel_attributes>Weapon
 --
 +name: string
 +min_dmg: int
@@ -79,13 +79,13 @@ Map(biome: string, id: int)</panel_attributes><additional_attributes></additiona
 +effect_damage_min: int
 +effect_damage_max: int
 +effect_chance: double
-+descripion: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>80</x><y>608</y><w>96</w><h>96</h></coordinates><panel_attributes>Player_equip
++descripion: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>144</x><y>684</y><w>108</w><h>108</h></coordinates><panel_attributes>Player_equip
 --
 +helmet: string
 +chestplate: string
 +gauntlet: string
 +pants: string
-+boots: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>72</x><y>728</y><w>96</w><h>112</h></coordinates><panel_attributes>Player_attributes
++boots: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>135</x><y>819</y><w>108</w><h>126</h></coordinates><panel_attributes>Player_attributes
 --
 +vigor: int
 +strength: int
@@ -93,13 +93,13 @@ Map(biome: string, id: int)</panel_attributes><additional_attributes></additiona
 +concentration: int
 +intelligence: int
 +faith: int
-+luck: int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>88</x><y>872</y><w>80</w><h>56</h></coordinates><panel_attributes>Player_Gen
++luck: int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>153</x><y>981</y><w>90</w><h>63</h></coordinates><panel_attributes>Player_Gen
 --
 +genre: string
 +raze: string
-+class: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>896</x><y>664</y><w>160</w><h>80</h></coordinates><panel_attributes>EnemyEntity
++class: string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1062</x><y>747</y><w>180</w><h>90</h></coordinates><panel_attributes>EnemyEntity
 --
 EnemyEntity(image_path: string)
 +image_path: string
 +admissible_biome: string[ ]
-+admissible_enemy: string [ ]</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>968</x><y>752</y><w>24</w><h>48</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>968</x><y>768</y><w>144</w><h>32</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;160;10;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>704</x><y>800</y><w>104</w><h>24</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;110;10</additional_attributes></element><element><id>Relation</id><coordinates><x>608</x><y>864</y><w>24</w><h>56</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;50;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>832</x><y>736</y><w>160</w><h>64</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>180;10;180;50;10;50;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>168</x><y>664</y><w>96</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>100;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>160</x><y>728</y><w>64</w><h>24</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;60;10</additional_attributes></element><element><id>Relation</id><coordinates><x>160</x><y>664</y><w>64</w><h>248</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;290;60;290;60;10</additional_attributes></element><element><id>Relation</id><coordinates><x>408</x><y>688</y><w>168</w><h>136</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>190;150;80;150;80;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>408</x><y>664</y><w>144</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;160;10</additional_attributes></element><element><id>Relation</id><coordinates><x>776</x><y>664</y><w>136</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>968</x><y>384</y><w>24</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>648</x><y>512</y><w>24</w><h>168</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;190</additional_attributes></element><element><id>Relation</id><coordinates><x>200</x><y>0</y><w>192</w><h>296</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;60;10;60;350;220;350</additional_attributes></element><element><id>Relation</id><coordinates><x>240</x><y>200</y><w>152</w><h>24</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;170;10</additional_attributes></element><element><id>Relation</id><coordinates><x>536</x><y>272</y><w>56</w><h>24</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>536</x><y>200</y><w>56</w><h>176</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>50;200;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>736</x><y>352</y><w>192</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;220;10</additional_attributes></element></diagram>
++admissible_enemy: string [ ]</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1143</x><y>846</y><w>27</w><h>54</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>1143</x><y>864</y><w>162</w><h>36</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;160;10;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>846</x><y>900</y><w>117</w><h>27</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;110;10</additional_attributes></element><element><id>Relation</id><coordinates><x>738</x><y>972</y><w>27</w><h>63</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;50;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>990</x><y>828</y><w>180</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>180;10;180;50;10;50;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>243</x><y>747</y><w>108</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>100;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>234</x><y>819</y><w>72</w><h>27</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;60;10</additional_attributes></element><element><id>Relation</id><coordinates><x>234</x><y>747</y><w>72</w><h>279</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;290;60;290;60;10</additional_attributes></element><element><id>Relation</id><coordinates><x>513</x><y>774</y><w>189</w><h>153</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>190;150;80;150;80;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>513</x><y>747</y><w>162</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;160;10</additional_attributes></element><element><id>Relation</id><coordinates><x>927</x><y>747</y><w>153</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1143</x><y>432</y><w>27</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>783</x><y>576</y><w>27</w><h>189</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;190</additional_attributes></element><element><id>Relation</id><coordinates><x>279</x><y>0</y><w>216</w><h>333</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;60;10;60;350;220;350</additional_attributes></element><element><id>Relation</id><coordinates><x>324</x><y>225</y><w>171</w><h>27</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;170;10</additional_attributes></element><element><id>Relation</id><coordinates><x>657</x><y>306</y><w>63</w><h>27</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>657</x><y>225</y><w>63</w><h>198</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>50;200;50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>882</x><y>396</y><w>216</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;220;10</additional_attributes></element></diagram>

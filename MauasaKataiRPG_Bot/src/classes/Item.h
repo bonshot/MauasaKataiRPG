@@ -15,7 +15,13 @@ class Item{
         *  @brief Default Constructor for Item
         *  @return Item
         **/
-        Item();
+        Item():
+            name(""),
+            type(""),
+            rarity(""),
+            price(0),
+            description("")
+        {}
         
         /** 
         *  @brief Constructor for Item
@@ -26,7 +32,13 @@ class Item{
         *  @param description Description of the item -> string
         *  @return Item
         **/
-        Item(std::string name, std::string type, std::string rarity, int price, std::string description);
+        Item(std::string name, std::string type, std::string rarity, int price, std::string description):
+            name(name),
+            type(type),
+            rarity(rarity),
+            price(price),
+            description(description)
+        {}
 
         /**
          * @brief Destroy the Item object
@@ -65,43 +77,5 @@ class Item{
         **/
         std::string get_description();  
 };
-
-
-
-inline Item::Item()
-    : name(""),
-      type(""),
-      rarity(""),
-      price(0),
-      description("")
-    {}
-
-inline Item::Item(std::string name, std::string type, std::string rarity, int price, std::string description)
-    : name(name),
-      type(type),
-      rarity(rarity),
-      price(price),
-      description(description)
-    {}
-
-inline std::string Item::get_name() {
-    return this->name;
-}
-
-inline std::string Item::get_type() {
-    return this->type;
-}
-
-inline std::string Item::get_rarity() {
-    return this->rarity;
-}
-
-inline int Item::get_price() {
-    return this->price;
-}
-
-inline std::string Item::get_description() {
-    return this->description;
-}
 
 #endif

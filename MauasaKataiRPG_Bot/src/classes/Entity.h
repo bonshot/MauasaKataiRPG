@@ -25,20 +25,8 @@ class Entity{
          * @param name: name of the entity -> string
          * @return Entity
         **/
-        Entity(std::string name);
+        Entity(std::string name): name(name), level(Level()), health(100), mana(100), conviction(100), min_damage(0), max_damage(0), armor(5), magic_resistance(5) {}
 
 };
-
-inline Entity::Entity(std::string name){
-    this->name = name;
-    this->level = Level();
-    this->health = 100;
-    this->mana = 100;
-    this->conviction = 100;
-    this->min_damage = 0;
-    this->max_damage = 0;
-    this->armor = 5;
-    this->magic_resistance = 5;
-}
 
 #endif

@@ -28,7 +28,15 @@ class Scales{
          * @param scale_luck The luck factor         -> array[6]
          * @return Scales
         **/
-        Scales(std::array<double, SCALE_AMOUNT> scales);
+        Scales(std::array<double, SCALE_AMOUNT> scales):
+            scale_str(scales[0]),
+            scale_dex(scales[1]),
+            scale_int(scales[2]),
+            scale_fth(scales[3]),
+            scale_arm(scales[4]),
+            scale_hp(scales[5]),
+            scale_luck(scales[6])
+        {}
         
         /**
          *  @brief Get an array of all the scales
@@ -43,28 +51,5 @@ class Scales{
         **/
         std::array<double, SCALE_AMOUNT> get_scales();
 };
-
-inline Scales::Scales(std::array<double, SCALE_AMOUNT> scales) : 
-      scale_str (scales[0]), 
-      scale_dex (scales[1]), 
-      scale_int (scales[2]), 
-      scale_fth (scales[3]), 
-      scale_arm (scales[4]), 
-      scale_hp  (scales[5]), 
-      scale_luck(scales[6])
-    {}
-
-inline std::array<double, SCALE_AMOUNT> Scales::get_scales(){
-    return {
-        this->scale_str, 
-        this->scale_dex, 
-        this->scale_int, 
-        this->scale_fth, 
-        this->scale_arm, 
-        this->scale_hp, 
-        this->scale_luck
-    };
-}
-
 
 #endif

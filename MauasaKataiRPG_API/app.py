@@ -37,12 +37,12 @@ def get_extrapolated_data(query, field):
     print(field)
 
 
-@app.route('/api/users')
+@app.route('/api/users', strict_slashes=False)
 def users():
     query = 'SELECT * FROM player'
     return get_data(query)
 
-@app.route('/api/add_user', methods=['POST'])
+@app.route('/api/add_user', methods=['POST'], strict_slashes=False)
 def add_user():
     try:
         data = request.get_json()
@@ -61,19 +61,26 @@ def add_user():
     except SQLAlchemyError as e:
         return jsonify({'error': 'Failed to add user', 'data': data}), 500
 
-@app.route('/api/classes/<string:data>', methods=['GET'])
-def get_classes(data):
+@app.route('/api/classes', methods=['GET'], strict_slashes=False)
+def get_classes():
+    query = f'SELECT * FROM classes'
+    return get_data(query)
+
+@app.route('/api/classes/<string:data>', methods=['GET'], strict_slashes=False)
+def get_class(data):
     query = f'SELECT * FROM classes WHERE name = "{data}"'
     return get_data(query)
 
-@app.route('/api/races', methods=['GET'])
+@app.route('/api/races', methods=['GET'], strict_slashes=False)
 def get_races():
     query = f'SELECT * FROM races'
     data = get_data(query)
     return data
 
-@app.route('/api/races/<string:data>', methods=['GET'])
+@app.route('/api/races/<string:data>', methods=['GET'], strict_slashes=False)
 def get_race(data):
+    if(data == 'Dark_elf'):
+       data = 'Dark elf'
     query = f'SELECT * FROM races WHERE name = "{data}"'
     return get_data(query)
 
@@ -134,7 +141,7 @@ def insert_data(user_data, attributes):
     except SQLAlchemyError as e:
         return jsonify({'error': str(e.__dict__['orig'])}), 500
 
-@app.route('/api/register', methods=['POST'])
+@app.route('/api/register', methods=['POST'], strict_slashes=False)
 def register():
     try:
         data = request.get_json()

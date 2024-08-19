@@ -1,5 +1,5 @@
 #include <dpp/dpp.h>
-
+#include <string>
 #include "../event_handler.h"
 #include "../register.h"
 
@@ -13,4 +13,6 @@ void bot_on_event_handler(const dpp::slashcommand_t& event, dpp::cluster& bot) {
     if (command_name == "beep") {
         event.reply("Boop!");
     }
+
+    
 }

@@ -1,8 +1,9 @@
 #include <dpp/dpp.h>
 
-#include "headers/env_loader.h"
-#include "headers/event_handler.h"
-#include "headers/ready_handler.h"
+#include "src/utils/env_loader.h"
+#include "src/utils/event_handler.h"
+#include "src/utils/ready_handler.h"
+#include "src/utils/select_click_handler.h"
 
 using namespace std;
 
@@ -22,6 +23,10 @@ int main() {
         if (dpp::run_once<struct register_bot_commands>()) {
             bot_on_ready_handler(bot);
         }
+    });
+
+    bot.on_select_click([&bot](const dpp::select_click_t& event) {
+        bot_on_select_click_handler(event, bot);
     });
 
     bot.start(dpp::st_wait);
